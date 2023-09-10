@@ -25,12 +25,7 @@ notes.post('/api/notes', (req, res) => {
   if (title && text) {
     readAndAppend(addNote, './db/db.json');
     res.json(`Notes added`);
-  } else {
-    res.json({
-      message: 'Object is valid, not logging. Check front end implementation', //where will i see this message
-      error_id: payload.error_id,
-    });
-  }
+  } 
 });
 
 module.exports = notes;
