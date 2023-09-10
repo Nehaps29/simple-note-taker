@@ -5,14 +5,14 @@ const util = require('util');
 const { readAndAppend, readFromFile } = require('../helpers/fsUtils');
 
 
-// GET Route for retrieving diagnostic information
+// GET Route for retrieving notes  information
 router.get('/api/notes', (req, res) => {
   readFromFile('./db/db.json').then((data) =>
     res.json(JSON.parse(data))
   );
 });
 
-// POST Route for a error logging
+// POST Route for adding note
 router.post('/api/notes', (req, res) => {
   console.log(req.body);
 
@@ -22,16 +22,15 @@ router.post('/api/notes', (req, res) => {
     title,
     text,
     id: uuidv4()
-    //how to add id here, when in db.json only title and text are available.
   };
-
+//checking condition before adding the note
   if (title && text) {
     readAndAppend(addNote, './db/db.json');
     res.json(`Notes added`);
   } 
 });
 
-
+//Delete route to delete the note
 router.delete('/api/notes/:id', (req, res) => {
   const id = req.params.id;
   readFromFile('./db/db.json').then((data) =>{
