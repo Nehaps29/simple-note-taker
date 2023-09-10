@@ -1,6 +1,7 @@
 const notes = require('express').Router();
 const { v4: uuidv4 } = require('uuid');
-const { readAndAppend, readFromFile } = require('../helpers/fsUtils');
+const fs = require('fs');
+const util = require('util');
 
 // GET Route for retrieving diagnostic information
 notes.get('/api/notes', (req, res) => {
