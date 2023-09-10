@@ -13,11 +13,12 @@ notes.get('/api/notes', (req, res) => {
 notes.post('/api/notes', (req, res) => {
   console.log(req.body);
 
-  const { title, text } = req.body;//How do we alreday know about these destructred items, like there will be two items in responses
+  const { title, text } = req.body;
 
   const addNote = {
     title,
     text,
+    id: uuidv4()
     //how to add id here, when in db.json only title and text are available.
   };
 
